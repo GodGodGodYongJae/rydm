@@ -2,30 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundBehavior : MonoBehaviour
+namespace Rhythm
 {
-    public GameObject gameBackground;
-    private SpriteRenderer gameBackgroundSpriteRenderer;
-
-    void Start()
+    public class BackgroundBehavior : MonoBehaviour
     {
-        gameBackgroundSpriteRenderer = gameBackground.GetComponent<SpriteRenderer>();
-        StartCoroutine(FadeOut(gameBackgroundSpriteRenderer, 0.005f));
-    }
+        public GameObject gameBackground;
+        private SpriteRenderer gameBackgroundSpriteRenderer;
 
-    IEnumerator FadeOut(SpriteRenderer spriteRenderer, float amount)
-    {
-        Color color = spriteRenderer.color;
-        while(color.a > 0.0f)
+        void Start()
         {
-            color.a -= amount;
-            spriteRenderer.color = color;
-            yield return new WaitForSeconds(amount);
+            gameBackgroundSpriteRenderer = gameBackground.GetComponent<SpriteRenderer>();
+            StartCoroutine(FadeOut(gameBackgroundSpriteRenderer, 0.005f));
+        }
+
+        IEnumerator FadeOut(SpriteRenderer spriteRenderer, float amount)
+        {
+            Color color = spriteRenderer.color;
+            while (color.a > 0.0f)
+            {
+                color.a -= amount;
+                spriteRenderer.color = color;
+                yield return new WaitForSeconds(amount);
+            }
+        }
+
+        void Update()
+        {
+
         }
     }
-    
-    void Update()
-    {
-        
-    }
 }
+
